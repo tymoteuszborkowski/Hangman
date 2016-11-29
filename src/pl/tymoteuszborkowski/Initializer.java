@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import pl.tymoteuszborkowski.game.WordGenerator;
 import pl.tymoteuszborkowski.ui.Buttons;
 
 public class Initializer extends Application {
@@ -18,6 +19,9 @@ public class Initializer extends Application {
 
         final Button generateWordButton = buttons.generateWordButton();
         final Button[] keyboardButtons = buttons.addKeyboardButtons();
+
+        Thread thread = new Thread(new WordGenerator());
+        thread.start();
 
 
         layout.getChildren().addAll(keyboardButtons);
