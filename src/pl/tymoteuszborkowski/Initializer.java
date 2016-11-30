@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import pl.tymoteuszborkowski.game.WordGenerator;
 import pl.tymoteuszborkowski.ui.Buttons;
+import pl.tymoteuszborkowski.ui.PuzzleText;
 
 public class Initializer extends Application {
 
@@ -18,6 +19,8 @@ public class Initializer extends Application {
     public void start(Stage primaryStage) throws Exception {
         final GridPane layout = new GridPane();
         final Buttons buttons = new Buttons();
+        final PuzzleText puzzleText = new PuzzleText(layout);
+
 
         final Button generateWordButton = buttons.generateWordButton();
         final Button[] keyboardButtons = buttons.addKeyboardButtons();
@@ -25,8 +28,8 @@ public class Initializer extends Application {
         final WordGenerator wordGenerator = new WordGenerator();
 
         generateWordButton.setOnAction(event -> {
-            String s = wordGenerator.generateWord();
-
+            String word = wordGenerator.generateWord();
+            puzzleText.fillTextField(word);
         });
 
 
