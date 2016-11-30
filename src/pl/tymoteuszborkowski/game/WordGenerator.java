@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Stream;
 
-public class WordGenerator implements Runnable {
+public class WordGenerator {
 
     private static final String DICTIONARY_PATH = "resources/dictionary.txt";
     private static final Charset CHARSET = Charset.forName("ISO-8859-1");
@@ -19,32 +19,15 @@ public class WordGenerator implements Runnable {
     private final Path path;
     private final List<String> words = new ArrayList<>();
 
-    private String generatedWord;
-
-
     public WordGenerator() {
         path = Paths.get(DICTIONARY_PATH);
         random = new Random(47);
-    }
 
-
-    @Override
-    public void run() {
         fillDictionaryList();
-        generatedWord = generateWord();
-
     }
 
 
-    public String getGeneratedWord() throws WordGeneratingException{
-        if(generatedWord != null){
-            return generatedWord;
-        }else{
-            throw new WordGeneratingException();
-        }
-    }
-
-    private String generateWord(){
+    public String generateWord(){
         String word = "";
 
         if(!words.isEmpty()){

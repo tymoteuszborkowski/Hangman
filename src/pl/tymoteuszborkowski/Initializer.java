@@ -1,6 +1,8 @@
 package pl.tymoteuszborkowski;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -20,8 +22,12 @@ public class Initializer extends Application {
         final Button generateWordButton = buttons.generateWordButton();
         final Button[] keyboardButtons = buttons.addKeyboardButtons();
 
-        Thread thread = new Thread(new WordGenerator());
-        thread.start();
+        final WordGenerator wordGenerator = new WordGenerator();
+
+        generateWordButton.setOnAction(event -> {
+            String s = wordGenerator.generateWord();
+
+        });
 
 
         layout.getChildren().addAll(keyboardButtons);
@@ -30,7 +36,7 @@ public class Initializer extends Application {
         layout.setVgap(10);
         layout.setHgap(10);
 
-    Scene mainScene = new Scene(layout, 450, 750);
+    final Scene mainScene = new Scene(layout, 450, 750);
         layout.setAlignment(Pos.BASELINE_CENTER);
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Hangman");
