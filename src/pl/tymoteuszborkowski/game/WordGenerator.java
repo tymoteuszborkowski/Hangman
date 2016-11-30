@@ -17,6 +17,10 @@ public class WordGenerator implements Runnable {
 
     private final Random random;
     private final Path path;
+    private final List<String> words = new ArrayList<>();
+
+    private String generatedWord;
+
 
     public WordGenerator() {
         path = Paths.get(DICTIONARY_PATH);
@@ -26,16 +30,32 @@ public class WordGenerator implements Runnable {
 
     @Override
     public void run() {
-        List<String> dictionary = getDictionary();
-
-        // generateWord(List<String> dictionary); //todo
+        fillDictionaryList();
+        generatedWord = generateWord();
 
     }
 
 
-    private List<String> getDictionary() {
+    public String getGeneratedWord() throws WordGeneratingException{
+        if(generatedWord != null){
+            return generatedWord;
+        }else{
+            throw new WordGeneratingException();
+        }
+    }
 
-        final List<String> words = new ArrayList<>();
+    private String generateWord(){
+        String word = "";
+
+        if(!words.isEmpty()){
+            word = words.get(random.nextInt(words.size()-1));
+        }
+        return word;
+    }
+
+
+
+    private void fillDictionaryList() {
 
         try {
             Stream<String> stream = Files.lines(path, CHARSET);
@@ -44,10 +64,6 @@ public class WordGenerator implements Runnable {
             //todo add friendly message
             e.printStackTrace();
         }
-
-
-        return words;
-
     }
 
 
