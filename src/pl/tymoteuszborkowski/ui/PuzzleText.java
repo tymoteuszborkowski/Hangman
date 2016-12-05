@@ -1,24 +1,31 @@
 package pl.tymoteuszborkowski.ui;
 
-import javafx.scene.control.TextField;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 
 public class PuzzleText {
 
-    private final TextField textField = new TextField();
-
+    private final Label label = new Label();
+    private final Font font = new Font("Serif", 18);
 
     public PuzzleText(GridPane layout){
-        textField.setVisible(false);
-        GridPane.setConstraints(textField, 2, 0);
-        layout.getChildren().addAll(textField);
+        label.setMouseTransparent(true);
+        label.setFocusTraversable(false);
+        label.setVisible(false);
+        label.setFont(font);
+        GridPane.setConstraints(label, 2, 4,4, 1, HPos.CENTER, VPos.CENTER);
+        layout.getChildren().addAll(label);
 
     }
 
     public void fillTextField(String word){
 
-        textField.setText(word);
-        textField.setVisible(true);
+        String replaced = word.replaceAll("[a-zA-Z]", " _ ");
+        label.setText(replaced);
+        label.setVisible(true);
 
     }
 

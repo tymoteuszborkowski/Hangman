@@ -28,7 +28,8 @@ public class Initializer extends Application {
         final WordGenerator wordGenerator = new WordGenerator();
 
         generateWordButton.setOnAction(event -> {
-            String word = wordGenerator.generateWord();
+            final String word = wordGenerator.generateWord();
+            char[] wordChars = word.toCharArray();
             puzzleText.fillTextField(word);
         });
 
