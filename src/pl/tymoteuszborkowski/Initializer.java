@@ -9,11 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import pl.tymoteuszborkowski.game.LetterMatcher;
 import pl.tymoteuszborkowski.game.WordGenerator;
 import pl.tymoteuszborkowski.ui.Buttons;
 import pl.tymoteuszborkowski.ui.PuzzleText;
 
 public class Initializer extends Application {
+
+    private LetterMatcher letterMatcher;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -29,8 +32,9 @@ public class Initializer extends Application {
 
         generateWordButton.setOnAction(event -> {
             final String word = wordGenerator.generateWord();
-            char[] wordChars = word.toCharArray();
             puzzleText.fillTextField(word);
+            letterMatcher = new LetterMatcher(keyboardButtons, word);
+            letterMatcher.waitForClick();
         });
 
 

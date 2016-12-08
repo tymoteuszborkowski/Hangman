@@ -16,7 +16,7 @@ public class PuzzleText {
         label.setFocusTraversable(false);
         label.setVisible(false);
         label.setFont(font);
-        GridPane.setConstraints(label, 2, 4,4, 1, HPos.CENTER, VPos.CENTER);
+        GridPane.setConstraints(label, 2, 4,6, 1, HPos.CENTER, VPos.CENTER);
         layout.getChildren().addAll(label);
 
     }
