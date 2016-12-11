@@ -30,7 +30,12 @@ public class PuzzleText {
     }
 
 
-
+    public void addProperLetter(char newChar, int index){
+        String text = label.getText();
+        final StringBuilder replaced = new StringBuilder(text);
+        replaced.setCharAt(index, newChar);
+        label.setText(replaced.toString());
+    }
 
 
 

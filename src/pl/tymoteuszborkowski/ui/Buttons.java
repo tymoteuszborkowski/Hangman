@@ -1,6 +1,7 @@
 package pl.tymoteuszborkowski.ui;
 
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -14,6 +15,7 @@ public class Buttons {
         for(int i = 0; i < buttons.length; i++){
             buttons[i] = new Button();
             buttons[i].setText(keyboard[i]);
+            buttons[i].setDisable(true);
         }
 
         for (int i = 0x0, countRow = 0x0, countColumn = 0x39; i < buttons.length; i++) {
@@ -36,9 +38,14 @@ public class Buttons {
         return wordButton;
     }
 
+    public Button addGuessButton(){
+        final Button button = new Button("Guess");
+        button.setAlignment(Pos.BASELINE_CENTER);
+        GridPane.setConstraints(button, 4, 11, 3, 2, HPos.CENTER, VPos.CENTER);
 
 
-
+        return button;
+    }
 
 
     private static String[] getLetters(){
