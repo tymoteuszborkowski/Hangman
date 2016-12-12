@@ -6,6 +6,9 @@ import pl.tymoteuszborkowski.ui.AnswerPopup;
 import pl.tymoteuszborkowski.ui.AnswersCounter;
 import pl.tymoteuszborkowski.ui.PuzzleText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LetterMatcher {
 
 
@@ -36,9 +39,9 @@ public class LetterMatcher {
         for (Button keyboardBtn : keyboardBtns) {
             keyboardBtn.setOnAction(event -> {
                 String letter = keyboardBtn.getText().toLowerCase();
-                 match = match(letter);
-                if(match != -1){
-                    puzzleText.addProperLetter(letter.toCharArray()[0], match);
+                List<Integer> indexes = match(letter);
+                if(!indexes.isEmpty()){
+                    puzzleText.addProperLetter(letter.toCharArray()[0], indexes);
                 }else {
                     badAnswer++;
                     answersCounter.setBadAnswersLbl(badAnswer, word);
@@ -62,8 +65,19 @@ public class LetterMatcher {
     }
 
 
-    private int match(String letter){
-        return word.indexOf(letter.toCharArray()[0]);
+    private List<Integer> match(String letterStr){
+        List<Integer> indexes = new ArrayList<>();
+
+        char letter = letterStr.toCharArray()[0];
+
+        char[] wordChars = word.toCharArray();
+
+        for(int i = 0; i < word.length(); i++){
+            if(wordChars[i] == letter){
+                indexes.add(i);
+            }
+        }
+        return indexes;
     }
 
 

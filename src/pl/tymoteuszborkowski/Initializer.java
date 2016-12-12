@@ -51,6 +51,7 @@ public class Initializer extends Application {
                     globalPoints++;
                     new AnswerPopup("Good Answer! Earned points: " + globalPoints);
                     answersCounter.setGoodAnswers(globalPoints);
+                    guessButton.setDisable(true);
                 }else {
                     globalPoints = 0;
                     new AnswerPopup("Bad Answer! You lost your points :( ");

@@ -6,6 +6,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 
+import java.util.List;
+
 public class PuzzleText {
 
     private final Label label = new Label();
@@ -23,17 +25,20 @@ public class PuzzleText {
 
     public void fillTextField(String word){
 
-        String replaced = word.replaceAll("[a-zA-Z]", " _ ");
+        System.out.println(word);
+        String replaced = word.replaceAll("[a-zA-Z]", "_ ");
         label.setText(replaced);
         label.setVisible(true);
 
     }
 
 
-    public void addProperLetter(char newChar, int index){
+    public void addProperLetter(char newChar, List<Integer> indexes){
         String text = label.getText();
         final StringBuilder replaced = new StringBuilder(text);
-        replaced.setCharAt(index, newChar);
+        for(int index : indexes){
+            replaced.setCharAt(index*2, newChar);
+        }
         label.setText(replaced.toString());
     }
 

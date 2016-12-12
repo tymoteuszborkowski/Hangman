@@ -21,7 +21,7 @@ public class WordGenerator {
 
     public WordGenerator() {
         path = Paths.get(DICTIONARY_PATH);
-        random = new Random(47);
+        random = new Random(System.currentTimeMillis());
 
         fillDictionaryList();
     }
